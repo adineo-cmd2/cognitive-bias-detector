@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BiasTimeline from '../components/charts/BiasTimeline.tsx';
+---
+<BaseLayout title="Timeline — Bias Mirror">
+  <h1 class="serif-h mb-2 text-3xl text-charcoal">Timeline</h1>
+  <p class="mb-6 text-sm opacity-70">
+    How your flagged patterns accumulate week by week. Filter by bias type to
+    trace a single habit over time.
+  </p>
+  <BiasTimeline client:visible />
+</BaseLayout>

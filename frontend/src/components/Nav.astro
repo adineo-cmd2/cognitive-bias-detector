@@ -1,0 +1,22 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/upload', label: 'Upload' },
+  { href: '/bias-map', label: 'Bias Map' },
+  { href: '/timeline', label: 'Timeline' },
+  { href: '/explorer', label: 'Explorer' },
+  { href: '/settings', label: 'Settings' },
+];
+---
+<nav class="border-b border-sand bg-cream">
+  <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+    <a href="/" class="serif-h text-lg font-bold text-rust">Bias Mirror</a>
+    <ul class="flex gap-4">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="text-sm text-charcoal hover:text-rust">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

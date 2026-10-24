@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BiasListPanel from '../components/bias/BiasListPanel.tsx';
+import BiasRadarChart from '../components/bias/BiasRadarChart.tsx';
+---
+<BaseLayout title="Bias Map — Bias Mirror">
+  <h1 class="serif-h mb-2 text-3xl text-charcoal">Bias Map</h1>
+  <p class="mb-6 text-sm opacity-70">
+    Your most frequent patterns, ranked — with the exact quotes that triggered
+    each flag. Remember: probabilistic suggestions, not diagnoses.
+  </p>
+  <div class="grid gap-6 md:grid-cols-2">
+    <section>
+      <h2 class="serif-h mb-3 text-xl">Ranked biases</h2>
+      <BiasListPanel client:visible />
+    </section>
+    <section>
+      <h2 class="serif-h mb-3 text-xl">Radar</h2>
+      <BiasRadarChart client:visible />
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Bias Mirror — Your writing, turned into a mirror">
+  <section class="py-10 text-center">
+    <h1 class="serif-h text-4xl font-bold text-charcoal">Your writing, turned into a mirror.</h1>
+    <p class="mx-auto mt-4 max-w-xl text-charcoal">
+      Upload journals, notes, or drafts. Bias Mirror surfaces the cognitive
+      patterns hiding in your own words — with quoted evidence for every flag.
+    </p>
+    <a
+      href="/upload"
+      class="mt-6 inline-block rounded bg-rust px-6 py-3 font-bold text-cream"
+    >
+      Upload writing
+    </a>
+  </section>
+
+  <section class="mt-8 rounded border border-sand bg-white p-6">
+    <h2 class="serif-h text-2xl text-charcoal">Redacted example</h2>
+    <p class="mt-2 text-sm opacity-70">A flagged passage looks like this:</p>
+    <blockquote class="mt-4 border-l-4 border-rust bg-cream px-4 py-3 italic">
+      “I <span class="bg-sand px-1 font-bold not-italic text-rust">always knew</span> the launch would fail —
+      <span class="bg-charcoal px-1 not-italic text-cream">██████</span> agreed with me from the start.”
+    </blockquote>
+    <div class="mt-3 flex gap-2 text-xs">
+      <span class="rounded bg-sand px-2 py-1 font-bold text-rust">confirmation bias · 0.72</span>
+      <span class="rounded bg-sand px-2 py-1 font-bold text-rust">in-group bias · 0.61</span>
+    </div>
+  </section>
+
+  <section class="mt-8 text-sm text-charcoal opacity-80">
+    <h2 class="serif-h text-xl text-charcoal opacity-100">A probabilistic note</h2>
+    <p class="mt-2">
+      Flags are probabilistic suggestions, not diagnoses. The detector matches
+      language patterns against 15 known biases and quotes the sentence that
+      triggered each flag — always read the evidence and decide for yourself.
+    </p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SemanticSearch from '../components/explorer/SemanticSearch.tsx';
+---
+<BaseLayout title="Explorer — Bias Mirror">
+  <h1 class="serif-h mb-2 text-3xl text-charcoal">Explorer</h1>
+  <p class="mb-6 text-sm opacity-70">
+    Semantic search over everything you uploaded — matching passages come back
+    with bias tags and similarity scores.
+  </p>
+  <SemanticSearch client:load />
+</BaseLayout>
