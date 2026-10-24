@@ -4,11 +4,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#faf6ee',
-        sand: '#e8dcc3',
-        rust: '#b3402a',
-        charcoal: '#292524',
-      },
+        "cream": "#faf6ee",
+        "sand": "#e8dcc3",
+        "rust": "#b23a26",
+        "charcoal": "#2b2622"
+},
+      fontFamily: {
+        "display": [
+                "'Fraunces'",
+                "Georgia",
+                "serif"
+        ],
+        "body": [
+                "'Inter'",
+                "system-ui",
+                "sans-serif"
+        ],
+        "mono": [
+                "'JetBrains Mono'",
+                "ui-monospace",
+                "monospace"
+        ]
+},
     },
   },
   plugins: [],

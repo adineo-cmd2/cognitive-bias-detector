@@ -1,15 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DropZone from '../components/upload/DropZone.tsx';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
 <BaseLayout title="Upload — Bias Mirror">
-  <h1 class="serif-h mb-2 text-3xl text-charcoal">Upload writing</h1>
+  <h1 class="page-title">Upload writing</h1>
   <p class="mb-6 text-sm opacity-70">
     Drop in .txt, .md, or .pdf files. Each file is chunked, embedded, and
     scanned for 15 cognitive biases.
   </p>
   <DropZone client:load />
   <p class="mt-6 text-sm opacity-70">
-    See results on the <a href="/bias-map" class="font-bold text-rust underline">Bias Map</a>.
+    See results on the <a href={`${base}/bias-map`} class="font-bold text-rust underline">Bias Map</a>.
   </p>
 </BaseLayout>

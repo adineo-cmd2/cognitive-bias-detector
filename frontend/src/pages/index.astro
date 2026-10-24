@@ -1,40 +1,118 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
-<BaseLayout title="Bias Mirror — Your writing, turned into a mirror">
-  <section class="py-10 text-center">
-    <h1 class="serif-h text-4xl font-bold text-charcoal">Your writing, turned into a mirror.</h1>
-    <p class="mx-auto mt-4 max-w-xl text-charcoal">
-      Upload journals, notes, or drafts. Bias Mirror surfaces the cognitive
-      patterns hiding in your own words — with quoted evidence for every flag.
-    </p>
-    <a
-      href="/upload"
-      class="mt-6 inline-block rounded bg-rust px-6 py-3 font-bold text-cream"
-    >
-      Upload writing
-    </a>
-  </section>
+<BaseLayout title="Bias Mirror — your writing, turned into a mirror" description="Upload journals, notes, or drafts. Bias Mirror surfaces the cognitive patterns hiding in your own words — with quoted evidence for every flag.">
+<section class="hero">
+  <span class="hero-badge">15 known biases · quoted evidence</span>
+  <h1 class="display-1">Your writing,<br/><span class="grad-text">turned into a mirror.</span></h1>
+  <p class="lead">Upload journals, notes, or drafts. Bias Mirror surfaces the cognitive patterns hiding in your own words — with quoted evidence for every flag.</p>
+  <div class="hero-ctas">
+<a href={`${base}/upload`} class="btn btn-accent btn-lg">Upload writing</a>
+<a href={`${base}/bias-map`} class="btn btn-ghost btn-lg">Explore the bias map</a>
+  </div>
+  <div class="hero-meta">
+<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Encrypted at rest · never shared</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Semantic explorer with quotes</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Timeline of your patterns</span>
+  </div>
+</section>
 
-  <section class="mt-8 rounded border border-sand bg-white p-6">
-    <h2 class="serif-h text-2xl text-charcoal">Redacted example</h2>
-    <p class="mt-2 text-sm opacity-70">A flagged passage looks like this:</p>
-    <blockquote class="mt-4 border-l-4 border-rust bg-cream px-4 py-3 italic">
-      “I <span class="bg-sand px-1 font-bold not-italic text-rust">always knew</span> the launch would fail —
-      <span class="bg-charcoal px-1 not-italic text-cream">██████</span> agreed with me from the start.”
-    </blockquote>
-    <div class="mt-3 flex gap-2 text-xs">
-      <span class="rounded bg-sand px-2 py-1 font-bold text-rust">confirmation bias · 0.72</span>
-      <span class="rounded bg-sand px-2 py-1 font-bold text-rust">in-group bias · 0.61</span>
-    </div>
-  </section>
+<section class="section">
+  <div class="grid-3">
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Private by default</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Drop journals, notes or drafts — raw text is encrypted at rest and never shared.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="9" rx="7" ry="8"/><path d="M12 17v4M9 21h6M9.5 7.5c.7-1 2-1.6 3-1.4"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">15 known biases</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Confirmation bias, in-group bias and more, matched as language patterns in your own sentences.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Bias map</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Every flag placed on a map of patterns — see which biases dominate your writing.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M6.8 6.8 10.2 10.2M13.8 13.8l3.4 3.4"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Pattern timeline</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Flags over time show whether a bias is a one-off or a habit.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Semantic explorer</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Search your flagged passages and read the evidence behind every score.</p>
+</article>
+<article class="card card-hover p-5 reveal">
+  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Suggestions, not diagnoses</h3>
+  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Probabilistic flags with confidence — always read the quoted evidence and decide for yourself.</p>
+</article>
+  </div>
+</section>
 
-  <section class="mt-8 text-sm text-charcoal opacity-80">
-    <h2 class="serif-h text-xl text-charcoal opacity-100">A probabilistic note</h2>
-    <p class="mt-2">
-      Flags are probabilistic suggestions, not diagnoses. The detector matches
-      language patterns against 15 known biases and quotes the sentence that
-      triggered each flag — always read the evidence and decide for yourself.
-    </p>
-  </section>
+<section class="section reveal">
+  <div class="section-head">
+    <p class="eyebrow">Showcase</p>
+    <h2 class="section-title">A flagged passage</h2>
+    <p class="lead">Evidence first — the sentence is quoted, the bias named, the confidence shown.</p>
+  </div>
+
+<div class="card p-5 sm:p-7" style="max-width: 46rem; margin: 0 auto">
+  <blockquote class="serif-h text-[1.05rem] leading-relaxed italic" style="border-left: 4px solid var(--accent); padding: 0.9rem 1.1rem; background: var(--panel-2); border-radius: 0 12px 12px 0">
+    “I <span style="background: var(--accent-soft); color: var(--accent); font-weight: 700; padding: 0.05rem 0.35rem; border-radius: 6px">always knew</span> the launch would fail —
+    <span style="background: #2b2622; color: #faf6ee; padding: 0.05rem 0.35rem; border-radius: 6px">██████</span> agreed with me from the start.”
+  </blockquote>
+  <div class="mt-4 flex flex-wrap gap-2">
+    <span class="chip chip-accent">confirmation bias · 0.72</span>
+    <span class="chip chip-accent">in-group bias · 0.61</span>
+    <span class="chip">hindsight language · quoted</span>
+  </div>
+</div>
+
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <p class="eyebrow">How it works</p>
+    <h2 class="section-title">Three steps, no fluff</h2>
+  </div>
+  <div class="grid-3">
+<div class="step reveal">
+  <div class="step-num">01</div>
+  <h3 class="mt-2 text-[1rem] font-semibold">Upload writing</h3>
+  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Journals, notes, drafts — anything you wrote.</p>
+</div>
+<div class="step reveal">
+  <div class="step-num">02</div>
+  <h3 class="mt-2 text-[1rem] font-semibold">Read the flags</h3>
+  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Each flag quotes the sentence that triggered it, with a confidence score.</p>
+</div>
+<div class="step reveal">
+  <div class="step-num">03</div>
+  <h3 class="mt-2 text-[1rem] font-semibold">Reflect</h3>
+  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Use the bias map and timeline to watch for recurring patterns.</p>
+</div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="note-band">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <p>Flags are probabilistic suggestions, not diagnoses. The detector matches language patterns against 15 known biases and always quotes its evidence.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="cta-band reveal">
+    <h2 class="section-title">What do your words reveal?</h2>
+    <p class="lead" style="margin: 0.8rem auto 1.8rem">Upload a draft and read your own patterns — with receipts.</p>
+    <a href={`${base}/upload`} class="btn btn-accent btn-lg">Upload writing</a>
+  </div>
+</section>
+
 </BaseLayout>
