@@ -55,11 +55,11 @@ export default function BiasTimeline() {
       .sort((a, b) => (a.week < b.week ? -1 : 1));
   }, [trend, filter]);
 
-  if (!mounted) return <p className="text-sm opacity-70">Loading timeline…</p>;
+  if (!mounted) return <p className="text-sm text-soft">Loading timeline…</p>;
   if (error) return <p className="text-sm text-rust">{error}</p>;
   if (trend.length === 0)
     return (
-      <p className="text-sm opacity-70">
+      <p className="text-sm text-soft">
         No trend data yet. Flags accumulate by week once you upload writing.
       </p>
     );
@@ -82,21 +82,31 @@ export default function BiasTimeline() {
         </select>
       </label>
       {rows.length === 0 ? (
-        <p className="text-sm opacity-70">No points for this filter.</p>
+        <p className="text-sm text-soft">No points for this filter.</p>
       ) : (
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={rows}>
-              <XAxis dataKey="week" tick={{ fill: '#292524', fontSize: 12 }} />
+              <XAxis dataKey="week" tick={{ fill: '#2a2520', fontSize: 12 }} />
               <YAxis
                 allowDecimals={false}
-                tick={{ fill: '#292524', fontSize: 12 }}
+                tick={{ fill: '#2a2520', fontSize: 12 }}
               />
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  background: '#fffaf0',
+                  border: '1px solid #ddcfb4',
+                  borderRadius: 0,
+                  fontFamily: 'Karla, sans-serif',
+                  fontSize: 12,
+                  color: '#2a2520',
+                }}
+              />
               <Line
                 type="monotone"
                 dataKey="count"
-                stroke="#b3402a"
+                stroke="#9c2f24"
+                strokeWidth={2}
                 dot={false}
               />
             </LineChart>

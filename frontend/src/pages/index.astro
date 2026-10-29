@@ -1,118 +1,203 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+
+const notes = [
+  { name: 'Anchoring', tell: 'The first number sets the range; later numbers get judged against it.' },
+  { name: 'Availability', tell: 'If examples come easily to mind, the event starts to feel common.' },
+  { name: 'Confirmation', tell: 'Evidence gets read as proof of what you already believed.' },
+  { name: 'Sunk cost', tell: 'Staying because of what is already spent, not what comes next.' },
+  { name: 'In-group bias', tell: 'Your own group gets the benefit of the doubt; outsiders do not.' },
+  { name: 'Attribution error', tell: "Other people's failures are character; your own are circumstance." },
+  { name: 'Black and white', tell: 'A thing is perfect or ruined; the middle ground goes missing.' },
+  { name: 'Catastrophising', tell: 'The worst case arrives as a certainty, not a possibility.' },
+  { name: 'Mind reading', tell: "You assume the thought in someone else's head and skip the check." },
+  { name: 'Fortune telling', tell: 'A bad outcome gets written as fact before it has happened.' },
+  { name: 'Emotional reasoning', tell: 'A feeling is treated as evidence that the feeling is true.' },
+  { name: 'Overgeneralisation', tell: 'One bad night becomes “this always happens”.' },
+  { name: 'Personalisation', tell: 'Everything that went wrong gets laid at your own door.' },
+  { name: 'Mental filtering', tell: 'The good parts are discounted; only the failures stay in view.' },
+  { name: 'Dunning–Kruger', tell: 'Confidence outruns the evidence for it.' },
+];
+
+const pad = (n: number) => String(n).padStart(2, '0');
+const firstColumn = notes.slice(0, 8);
+const secondColumn = notes.slice(8);
 ---
-<BaseLayout title="Bias Mirror — your writing, turned into a mirror" description="Upload journals, notes, or drafts. Bias Mirror surfaces the cognitive patterns hiding in your own words — with quoted evidence for every flag.">
-<section class="hero">
-  <span class="hero-badge">15 known biases · quoted evidence</span>
-  <h1 class="display-1">Your writing,<br/><span class="grad-text">turned into a mirror.</span></h1>
-  <p class="lead">Upload journals, notes, or drafts. Bias Mirror surfaces the cognitive patterns hiding in your own words — with quoted evidence for every flag.</p>
-  <div class="hero-ctas">
-<a href={`${base}/upload`} class="btn btn-accent btn-lg">Upload writing</a>
-<a href={`${base}/bias-map`} class="btn btn-ghost btn-lg">Explore the bias map</a>
-  </div>
-  <div class="hero-meta">
-<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Encrypted at rest · never shared</span>
-<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Semantic explorer with quotes</span>
-<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Timeline of your patterns</span>
-  </div>
-</section>
+<BaseLayout title="Bias Mirror — your writing, turned into a mirror" description="Read your own drafts for cognitive patterns. Every flag keeps the sentence that triggered it.">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="hero-kicker">A reader's field notebook</p>
+      <h1 class="display-1">Your writing,<br />turned into a <span class="grad-text">mirror.</span></h1>
+      <p class="lead">
+        Bias Mirror reads your own drafts and marks the passages where a cognitive pattern shows up. Every flag keeps the sentence that set it off, so you can check the reading yourself.
+      </p>
+      <div class="hero-ctas">
+        <a href={`${base}/upload`} class="btn btn-accent btn-lg">Submit a draft</a>
+        <a href={`${base}/explorer`} class="btn btn-ghost btn-lg">Open a session</a>
+      </div>
+      <div class="hero-meta">
+        <span><b>15</b> patterns indexed</span>
+        <span><b>1</b> quote per flag</span>
+        <span>Encrypted at rest</span>
+      </div>
+    </div>
 
-<section class="section">
-  <div class="grid-3">
-<article class="card card-hover p-5 reveal">
-  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></div>
-  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Private by default</h3>
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Drop journals, notes or drafts — raw text is encrypted at rest and never shared.</p>
-</article>
-<article class="card card-hover p-5 reveal">
-  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="9" rx="7" ry="8"/><path d="M12 17v4M9 21h6M9.5 7.5c.7-1 2-1.6 3-1.4"/></svg></div>
-  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">15 known biases</h3>
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Confirmation bias, in-group bias and more, matched as language patterns in your own sentences.</p>
-</article>
-<article class="card card-hover p-5 reveal">
-  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
-  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Bias map</h3>
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Every flag placed on a map of patterns — see which biases dominate your writing.</p>
-</article>
-<article class="card card-hover p-5 reveal">
-  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M6.8 6.8 10.2 10.2M13.8 13.8l3.4 3.4"/></svg></div>
-  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Pattern timeline</h3>
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Flags over time show whether a bias is a one-off or a habit.</p>
-</article>
-<article class="card card-hover p-5 reveal">
-  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Semantic explorer</h3>
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Search your flagged passages and read the evidence behind every score.</p>
-</article>
-<article class="card card-hover p-5 reveal">
-  <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-  <h3 class="text-[1.02rem] font-semibold" style="letter-spacing:-0.01em">Suggestions, not diagnoses</h3>
-  <p class="mt-2 text-sm leading-relaxed" style="color: var(--ink-soft)">Probabilistic flags with confidence — always read the quoted evidence and decide for yourself.</p>
-</article>
-  </div>
-</section>
+    <div class="hero-figure">
+      <figure class="excerpt">
+        <div class="excerpt-head">
+          <span>Specimen 03 · draft</span>
+          <span>p. 2 / 4</span>
+        </div>
+        <div class="excerpt-body">
+          <div class="excerpt-text">
+            <p>
+              “The <span class="mark mark-oxblood">first offer</span><span class="mark-ref">1</span> felt fair, so every number after it looked reasonable. And <span class="mark mark-teal">everyone I know</span><span class="mark-ref">2</span> is calling this a downturn, which settles it.”
+            </p>
+          </div>
+          <aside class="excerpt-margin" aria-label="Margin notes">
+            <div class="marginalia m-1">
+              <span class="marg-index">1</span>
+              <span class="marg-name">anchoring</span>
+              <span class="marg-score">0.60 confidence</span>
+            </div>
+            <div class="marginalia m-2">
+              <span class="marg-index">2</span>
+              <span class="marg-name">availability</span>
+              <span class="marg-score">0.62 confidence</span>
+            </div>
+          </aside>
+        </div>
+        <figcaption class="excerpt-foot">
+          <span>Two flags, quoted in place</span>
+          <span class="chip chip-accent">anchoring · 0.60</span>
+          <span class="chip chip-accent">availability · 0.62</span>
+        </figcaption>
+      </figure>
+      <p class="hero-caption">
+        <span>A page from the intake, marked.</span>
+        <span>Underline first, margin note second.</span>
+      </p>
+    </div>
+  </section>
 
-<section class="section reveal">
-  <div class="section-head">
-    <p class="eyebrow">Showcase</p>
-    <h2 class="section-title">A flagged passage</h2>
-    <p class="lead">Evidence first — the sentence is quoted, the bias named, the confidence shown.</p>
-  </div>
+  <section class="section" id="field-notes">
+    <div class="field-head">
+      <div>
+        <p class="eyebrow">Index of patterns</p>
+        <h2 class="section-title">Field notes</h2>
+        <p class="lead">
+          Fifteen patterns the detector watches for. Each entry has a catalog number and a one-line tell. The evidence is always a sentence from your draft.
+        </p>
+      </div>
+      <p class="field-head-note">15 entries · two columns<br />read in any order</p>
+    </div>
 
-<div class="card p-5 sm:p-7" style="max-width: 46rem; margin: 0 auto">
-  <blockquote class="serif-h text-[1.05rem] leading-relaxed italic" style="border-left: 4px solid var(--accent); padding: 0.9rem 1.1rem; background: var(--panel-2); border-radius: 0 12px 12px 0">
-    “I <span style="background: var(--accent-soft); color: var(--accent); font-weight: 700; padding: 0.05rem 0.35rem; border-radius: 6px">always knew</span> the launch would fail —
-    <span style="background: #2b2622; color: #faf6ee; padding: 0.05rem 0.35rem; border-radius: 6px">██████</span> agreed with me from the start.”
-  </blockquote>
-  <div class="mt-4 flex flex-wrap gap-2">
-    <span class="chip chip-accent">confirmation bias · 0.72</span>
-    <span class="chip chip-accent">in-group bias · 0.61</span>
-    <span class="chip">hindsight language · quoted</span>
-  </div>
-</div>
+    <div class="field-index">
+      <ol class="index-col">
+        {firstColumn.map((note, i) => (
+          <li class="field-entry">
+            <span class="field-no">No. {pad(i + 1)}</span>
+            <span class="field-name">{note.name}</span>
+            <span class="field-tell">{note.tell}</span>
+          </li>
+        ))}
+      </ol>
+      <ol class="index-col" start="9">
+        {secondColumn.map((note, i) => (
+          <li class="field-entry">
+            <span class="field-no">No. {pad(i + 9)}</span>
+            <span class="field-name">{note.name}</span>
+            <span class="field-tell">{note.tell}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
 
-</section>
+    <div class="field-foot">
+      <p>No score out of ten. Confidence is printed beside the quote, where you can argue with it.</p>
+      <a href={`${base}/bias-map`} class="text-link">See the ranked map</a>
+    </div>
+  </section>
 
-<section class="section">
-  <div class="section-head">
-    <p class="eyebrow">How it works</p>
-    <h2 class="section-title">Three steps, no fluff</h2>
-  </div>
-  <div class="grid-3">
-<div class="step reveal">
-  <div class="step-num">01</div>
-  <h3 class="mt-2 text-[1rem] font-semibold">Upload writing</h3>
-  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Journals, notes, drafts — anything you wrote.</p>
-</div>
-<div class="step reveal">
-  <div class="step-num">02</div>
-  <h3 class="mt-2 text-[1rem] font-semibold">Read the flags</h3>
-  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Each flag quotes the sentence that triggered it, with a confidence score.</p>
-</div>
-<div class="step reveal">
-  <div class="step-num">03</div>
-  <h3 class="mt-2 text-[1rem] font-semibold">Reflect</h3>
-  <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--ink-soft)">Use the bias map and timeline to watch for recurring patterns.</p>
-</div>
-  </div>
-</section>
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Working forms</p>
+      <h2 class="section-title">The reading desk</h2>
+    </div>
+    <div class="desk-pair">
+      <a href={`${base}/upload`} class="desk-form">
+        <span class="desk-form-head"><span>Form 01</span><span>.txt · .md · .pdf</span></span>
+        <h3>Submit a draft</h3>
+        <p>
+          Send a file you wrote. It is chunked, embedded, and read against all fifteen rules. The page comes back with its evidence intact.
+        </p>
+        <span class="desk-action">Open the intake</span>
+      </a>
+      <a href={`${base}/explorer`} class="desk-form">
+        <span class="desk-form-head"><span>Form 02</span><span>semantic search</span></span>
+        <h3>Open a session</h3>
+        <p>
+          Search across everything you have submitted. A session returns matching passages, bias tags, and similarity scores. No summary, no rewrite.
+        </p>
+        <span class="desk-action">Start a search</span>
+      </a>
+    </div>
+  </section>
 
-<section class="section reveal">
-  <div class="note-band">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <p>Flags are probabilistic suggestions, not diagnoses. The detector matches language patterns against 15 known biases and always quotes its evidence.</p>
-  </div>
-</section>
+  <section class="section">
+    <div class="method-grid">
+      <div class="method-copy">
+        <p class="eyebrow">Reading the marks</p>
+        <h2 class="section-title">A page, read twice.</h2>
+        <p>
+          The first pass is the detector's: match a phrase, name the pattern, record a confidence. The second pass is yours. Nothing here asks you to accept the reading.
+        </p>
+        <dl class="legend">
+          <div>
+            <dt>Catalog number</dt>
+            <dd>The stable index, 01 to 15. Same pattern, same number, every page.</dd>
+          </div>
+          <div>
+            <dt>Underline</dt>
+            <dd>The exact phrase that set off the flag. Oxblood and teal keep two nearby marks apart.</dd>
+          </div>
+          <div>
+            <dt>Margin note</dt>
+            <dd>The pattern name and its confidence, written beside the phrase rather than over it.</dd>
+          </div>
+          <div>
+            <dt>Quote</dt>
+            <dd>Your sentence, kept whole. The interface never replaces it with a summary.</dd>
+          </div>
+        </dl>
+      </div>
+      <aside class="method-aside">
+        <span class="catalog">A note on certainty</span>
+        <p>
+          These are rule matches, not a clinician's reading. Each rule carries a fixed confidence weight, from 0.55 to 0.72. A high number means the phrase matched closely; it does not mean the thought is wrong.
+        </p>
+        <p class="mono">15 rules · no personality profile</p>
+      </aside>
+    </div>
+  </section>
 
-<section class="section">
-  <div class="cta-band reveal">
-    <h2 class="section-title">What do your words reveal?</h2>
-    <p class="lead" style="margin: 0.8rem auto 1.8rem">Upload a draft and read your own patterns — with receipts.</p>
-    <a href={`${base}/upload`} class="btn btn-accent btn-lg">Upload writing</a>
-  </div>
-</section>
+  <section class="section reveal">
+    <div class="note-band">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <p><strong>Flags are probabilistic.</strong> Read the quote, keep what fits, and leave the rest in the margin. Raw files are encrypted at rest and never shared.</p>
+    </div>
+  </section>
 
+  <section class="section">
+    <div class="cta-band reveal">
+      <div>
+        <p class="eyebrow">Next page</p>
+        <h2 class="section-title">Start with a page you already wrote.</h2>
+        <p class="lead">A journal entry, a memo, a draft you keep circling back to.</p>
+      </div>
+      <a href={`${base}/upload`} class="btn btn-accent btn-lg">Submit a draft</a>
+    </div>
+  </section>
 </BaseLayout>

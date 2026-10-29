@@ -1,12 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SemanticSearch from '../components/explorer/SemanticSearch.tsx';
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
-<BaseLayout title="Explorer — Bias Mirror">
-  <h1 class="page-title">Explorer</h1>
-  <p class="mb-6 text-sm opacity-70">
-    Semantic search over everything you uploaded — matching passages come back
-    with bias tags and similarity scores.
+<BaseLayout title="Open a session — Bias Mirror" description="Search your uploaded drafts by topic. Matching passages return with bias tags and similarity scores.">
+  <h1 class="page-title">Open a session</h1>
+  <div class="page-lede">
+    <p class="lead">
+      Semantic search over everything you have submitted. Matching passages come back with their bias tags and similarity scores, not a rewritten answer.
+    </p>
+    <p class="page-ref">Form 02 · reading room · local index</p>
+  </div>
+
+  <section class="sheet" style="margin-top: 2rem">
+    <div class="sheet-head">
+      <span>Session</span>
+      <span>your passages only</span>
+    </div>
+    <SemanticSearch client:load />
+  </section>
+
+  <p class="form-foot">
+    <span>Nothing in the index yet?</span>
+    <a href={`${base}/upload`}>Submit a draft first</a>
   </p>
-  <SemanticSearch client:load />
 </BaseLayout>

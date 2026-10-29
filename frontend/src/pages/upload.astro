@@ -4,14 +4,25 @@ import DropZone from '../components/upload/DropZone.tsx';
 
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 ---
-<BaseLayout title="Upload — Bias Mirror">
-  <h1 class="page-title">Upload writing</h1>
-  <p class="mb-6 text-sm opacity-70">
-    Drop in .txt, .md, or .pdf files. Each file is chunked, embedded, and
-    scanned for 15 cognitive biases.
-  </p>
-  <DropZone client:load />
-  <p class="mt-6 text-sm opacity-70">
-    See results on the <a href={`${base}/bias-map`} class="font-bold text-rust underline">Bias Map</a>.
+<BaseLayout title="Submit a draft — Bias Mirror" description="Upload a .txt, .md, or .pdf draft. Bias Mirror chunks, embeds, and scans it for fifteen cognitive patterns, quoting the evidence for every flag.">
+  <h1 class="page-title">Submit a draft</h1>
+  <div class="page-lede">
+    <p class="lead">
+      Drop in a file you wrote. Each file is chunked, embedded, and scanned for fifteen cognitive biases. Every flag keeps the passage that set it off.
+    </p>
+    <p class="page-ref">Form 01 · intake desk · .txt / .md / .pdf</p>
+  </div>
+
+  <section class="sheet" style="margin-top: 2rem">
+    <div class="sheet-head">
+      <span>Draft intake</span>
+      <span>encrypted at rest</span>
+    </div>
+    <DropZone client:load />
+  </section>
+
+  <p class="form-foot">
+    <span>Next: read the ranked map.</span>
+    <a href={`${base}/bias-map`}>Bias Map</a>
   </p>
 </BaseLayout>

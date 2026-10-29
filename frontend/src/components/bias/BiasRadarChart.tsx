@@ -30,11 +30,11 @@ export default function BiasRadarChart() {
       );
   }, []);
 
-  if (!mounted) return <p className="text-sm opacity-70">Loading chart…</p>;
+  if (!mounted) return <p className="text-sm text-soft">Loading chart…</p>;
   if (error) return <p className="text-sm text-rust">{error}</p>;
   if (data.length === 0)
     return (
-      <p className="text-sm opacity-70">
+      <p className="text-sm text-soft">
         No data for the radar yet — upload writing to fill it in.
       </p>
     );
@@ -43,13 +43,22 @@ export default function BiasRadarChart() {
     <div className="h-80">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={data} outerRadius="75%">
-          <PolarGrid stroke="#e8dcc3" />
+          <PolarGrid stroke="#ddcfb4" />
           <PolarAngleAxis
             dataKey="bias_type"
-            tick={{ fill: '#292524', fontSize: 11 }}
+            tick={{ fill: '#2a2520', fontSize: 11 }}
           />
-          <Radar dataKey="count" stroke="#b3402a" fill="#b3402a" fillOpacity={0.4} />
-          <Tooltip />
+          <Radar dataKey="count" stroke="#9c2f24" fill="#9c2f24" fillOpacity={0.22} />
+          <Tooltip
+            contentStyle={{
+              background: '#fffaf0',
+              border: '1px solid #ddcfb4',
+              borderRadius: 0,
+              fontFamily: 'Karla, sans-serif',
+              fontSize: 12,
+              color: '#2a2520',
+            }}
+          />
         </RadarChart>
       </ResponsiveContainer>
     </div>

@@ -1,24 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Settings — Bias Mirror">
+<BaseLayout title="Settings — Bias Mirror" description="Account, documents, export, and deletion for the local Bias Mirror reader.">
   <h1 class="page-title">Settings</h1>
+  <div class="page-lede">
+    <p class="lead">
+      The local record: one reader, the documents you have submitted, and the keys to take them out again.
+    </p>
+    <p class="page-ref">Form 06 · record · local only</p>
+  </div>
 
-  <section>
-    <h2 class="serif-h mb-2 text-xl">Account</h2>
-    <p class="text-sm opacity-80">Single local user — no login required.</p>
-    <p class="mt-2 text-sm opacity-80">Backend: <span id="api-base" class="mono-n"></span></p>
+  <section class="sheet" style="margin-top: 2rem">
+    <div class="sheet-head">
+      <span>Account</span>
+      <span>single local reader</span>
+    </div>
+    <h2 class="sheet-title">One reader, no login.</h2>
+    <p class="text-sm text-soft">This copy runs for a single local user. There is no account to create.</p>
+    <p class="mt-2 text-sm text-soft">Backend: <span id="api-base" class="mono-n"></span></p>
   </section>
 
-  <section class="mt-8">
-    <h2 class="serif-h mb-2 text-xl">Documents</h2>
-    <p id="docs-msg" class="mb-2 text-sm"></p>
+  <section class="sheet">
+    <div class="sheet-head">
+      <span>Documents</span>
+      <span>source text and flags</span>
+    </div>
+    <h2 class="sheet-title">Stored documents</h2>
+    <p id="docs-msg" class="mb-2 text-sm text-soft"></p>
     <ul id="docs-list" class="flex max-w-2xl flex-col gap-2"></ul>
-    <div class="mt-4 flex gap-2">
-      <button id="export-btn" class="rounded border border-rust px-4 py-2 text-rust">
+    <div class="mt-4 flex flex-wrap gap-2">
+      <button id="export-btn" class="btn btn-ghost">
         Export bias map (JSON)
       </button>
-      <button id="delete-all-btn" class="rounded bg-rust px-4 py-2 font-bold text-cream">
+      <button id="delete-all-btn" class="btn btn-accent">
         Delete all my data
       </button>
     </div>
@@ -51,12 +65,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       msg.textContent = `${docs.length} document(s).`;
       for (const d of docs) {
         const li = document.createElement('li');
-        li.className = 'flex items-center justify-between rounded border border-sand bg-white px-3 py-2 text-sm';
+        li.className = 'docs-row';
         const span = document.createElement('span');
         span.textContent = `${d.filename} — ${d.chunks} chunks, ${d.biases} flags`;
         const btn = document.createElement('button');
         btn.textContent = 'Delete';
-        btn.className = 'rounded border border-rust px-3 py-1 text-rust';
+        btn.className = 'docs-delete';
         btn.addEventListener('click', () => void deleteDoc(d.id));
         li.append(span, btn);
         list.append(li);

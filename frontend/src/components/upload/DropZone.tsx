@@ -103,14 +103,14 @@ export default function DropZone() {
             />
           </label>
         </p>
-        <p className="mt-2 text-sm opacity-70">.txt, .md, .pdf — multiple files OK</p>
+        <p className="mt-2 text-sm text-soft">.txt, .md, .pdf — multiple files OK</p>
       </div>
       {error && <p className="mt-3 text-sm text-rust">{error}</p>}
       <ul className="mt-4 flex flex-col gap-2">
         {files.map((f, index) => (
           <li key={`${f.name}-${index}`} className="rounded border border-sand bg-white px-3 py-2 text-sm">
             <span className="font-bold">{f.name}</span>{' '}
-            <span className="opacity-70">
+            <span className="text-soft">
               {f.stage === 'uploading' && 'uploading…'}
               {f.stage === 'analysing' && 'analysing…'}
               {f.stage === 'done' &&

@@ -2,11 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BiasTimeline from '../components/charts/BiasTimeline.tsx';
 ---
-<BaseLayout title="Timeline — Bias Mirror">
+<BaseLayout title="Timeline — Bias Mirror" description="See how your flagged patterns accumulate week by week, and filter by bias type.">
   <h1 class="page-title">Timeline</h1>
-  <p class="mb-6 text-sm opacity-70">
-    How your flagged patterns accumulate week by week. Filter by bias type to
-    trace a single habit over time.
-  </p>
-  <BiasTimeline client:visible />
+  <div class="page-lede">
+    <p class="lead">
+      How your flagged patterns accumulate week by week. Filter by bias type to trace a single habit over time.
+    </p>
+    <p class="page-ref">Form 04 · ledger · weekly count</p>
+  </div>
+
+  <section class="sheet" style="margin-top: 2rem">
+    <div class="sheet-head">
+      <span>Weekly ledger</span>
+      <span>flags accumulate, not diagnoses</span>
+    </div>
+    <h2 class="sheet-title">Flags over time</h2>
+    <BiasTimeline client:visible />
+  </section>
 </BaseLayout>

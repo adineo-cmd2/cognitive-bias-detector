@@ -24,11 +24,11 @@ export default function BiasListPanel() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p className="text-sm opacity-70">Loading bias map…</p>;
+  if (loading) return <p className="text-sm text-soft">Loading bias map…</p>;
   if (error) return <p className="text-sm text-rust">{error}</p>;
   if (ranked.length === 0)
     return (
-      <p className="text-sm opacity-70">
+      <p className="text-sm text-soft">
         No bias flags yet. Upload some writing first — your ranked biases will
         appear here.
       </p>

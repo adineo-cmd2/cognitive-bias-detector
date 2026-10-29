@@ -3,20 +3,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BiasListPanel from '../components/bias/BiasListPanel.tsx';
 import BiasRadarChart from '../components/bias/BiasRadarChart.tsx';
 ---
-<BaseLayout title="Bias Map — Bias Mirror">
-  <h1 class="page-title">Bias Map</h1>
-  <p class="mb-6 text-sm opacity-70">
-    Your most frequent patterns, ranked — with the exact quotes that triggered
-    each flag. Remember: probabilistic suggestions, not diagnoses.
-  </p>
-  <div class="grid gap-6 md:grid-cols-2">
-    <section>
-      <h2 class="serif-h mb-3 text-xl">Ranked biases</h2>
-      <BiasListPanel client:visible />
-    </section>
-    <section>
-      <h2 class="serif-h mb-3 text-xl">Radar</h2>
-      <BiasRadarChart client:visible />
-    </section>
+<BaseLayout title="Bias map — Bias Mirror" description="Your most frequent patterns, ranked, with the exact quotes that triggered each flag.">
+  <h1 class="page-title">Bias map</h1>
+  <div class="page-lede">
+    <p class="lead">
+      Your most frequent patterns, ranked, with the exact quotes that triggered each flag. Probabilistic suggestions, not diagnoses.
+    </p>
+    <p class="page-ref">Form 03 · profile · ranked and mapped</p>
   </div>
+
+  <section class="sheet" style="margin-top: 2rem">
+    <div class="sheet-head">
+      <span>Reader's profile</span>
+      <span>all uploaded drafts</span>
+    </div>
+    <div class="sheet-grid">
+      <section>
+        <h2 class="sheet-title">Ranked biases</h2>
+        <BiasListPanel client:visible />
+      </section>
+      <section>
+        <h2 class="sheet-title">Radar</h2>
+        <BiasRadarChart client:visible />
+      </section>
+    </div>
+  </section>
 </BaseLayout>

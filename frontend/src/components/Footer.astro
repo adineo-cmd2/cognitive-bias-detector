@@ -2,17 +2,33 @@
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 const year = new Date().getFullYear();
 const links: { href: string; label: string }[] = [{"href": "/", "label": "Home"}, {"href": "/upload", "label": "Upload"}, {"href": "/bias-map", "label": "Bias Map"}, {"href": "/timeline", "label": "Timeline"}, {"href": "/explorer", "label": "Explorer"}, {"href": "/settings", "label": "Settings"}];
+
+const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const route = base && current.startsWith(base) ? current.slice(base.length) || '/' : current;
+const folios: Record<string, string> = {
+  '/': '01',
+  '/upload': '02',
+  '/bias-map': '03',
+  '/timeline': '04',
+  '/explorer': '05',
+  '/settings': '06',
+};
+const folio = folios[route] ?? '00';
 ---
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <a href={base || '/'} class="brand" style="margin-bottom: 0.9rem">
-        <span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="9" rx="7" ry="8"/><path d="M12 17v4M9 21h6M9.5 7.5c.7-1 2-1.6 3-1.4"/></svg></span>
-        <span>Bias Mirror</span>
+      <a href={base || '/'} class="brand">
+        <span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="9" rx="7" ry="8"/><path d="M12 17v4M9 21h6M9.5 7.5c.7-1 2-1.6 3-1.4"/></svg></span>
+        <span class="brand-copy">
+          <span class="brand-name">Bias Mirror</span>
+          <span class="brand-sub">a reader's field notebook</span>
+        </span>
       </a>
-      <p class="text-sm leading-relaxed" style="color: var(--ink-soft); max-width: 34rem">
-        Bias Mirror — flags are probabilistic suggestions, not diagnoses. Your raw text is encrypted at rest and never shared.
+      <p class="footer-note">
+        Bias Mirror marks patterns in your own prose. Flags are suggestions, not diagnoses. Raw text is encrypted at rest and never shared.
       </p>
+      <p class="footer-folio">Vol. 01 · folio {folio} / 06</p>
     </div>
     <div>
       <h4>Explore</h4>
@@ -29,15 +45,22 @@ const links: { href: string; label: string }[] = [{"href": "/", "label": "Home"}
       <ul class="footer-links">
         <li><a href="https://github.com/adineo-cmd2/cognitive-bias-detector" target="_blank" rel="noreferrer">Source on GitHub ↗</a></li>
         <li><a href="https://adineo-cmd2.github.io/cognitive-bias-detector/" target="_blank" rel="noreferrer">Live site ↗</a></li>
-        <li><span style="font-size: 0.88rem">Local backend · <span class="mono">localhost:8002</span></span></li>
-        <li><span style="font-size: 0.88rem">FastAPI + Astro + React</span></li>
+        <li><span>Local backend · <span class="mono">localhost:8002</span></span></li>
+        <li><span>FastAPI + Astro + React</span></li>
       </ul>
+    </div>
+    <div class="footer-colophon">
+      <h4>Colophon</h4>
+      <p>Set in Newsreader, Karla and IBM Plex Mono.</p>
+      <p>Fifteen pattern rules. One quoted sentence for every flag.</p>
+      <p class="mono">Local-first · no feed</p>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
       <span>© {year} Bias Mirror · Aditya Yadav</span>
       <span>Deployed on GitHub Pages</span>
+      <span>Folio {folio} / 06</span>
     </div>
   </div>
 </footer>
